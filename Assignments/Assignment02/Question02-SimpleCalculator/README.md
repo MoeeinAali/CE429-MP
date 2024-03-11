@@ -1,5 +1,5 @@
-# Assignment02 - Question01 - LoginForm
-![LoginForm](https://github.com/MoeeinAali/CE429-MP/blob/9448fe015edcce2114afe2372afb26408aebf9a1/Assignments/Assignment02/Question02-SimpleCalculator/SimpleCalculator.png)
+# Assignment02 - Question01 - SimpleCalculator
+![SimpleCalculator](https://github.com/MoeeinAali/CE429-MP/blob/9448fe015edcce2114afe2372afb26408aebf9a1/Assignments/Assignment02/Question02-SimpleCalculator/SimpleCalculator.png)
 
 ## XML Codes
 
