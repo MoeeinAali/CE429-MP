@@ -1,0 +1,166 @@
+# Assignment02 - Question03 - RegistrationForm
+![RegistrationForm](https://github.com/MoeeinAali/CE429-MP/blob/49ccc7570ad0aa5f8c8d2b383e64dcbed801f0e7/Assignments/Assignment02/Question03-RegistrationForm/RegistrationForm.png)
+## XML Codes
+
+```
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:backgroundTint="@color/black"
+        android:layout_height="match_parent"
+        android:padding="16dp"
+        android:orientation="vertical">
+
+    <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="102dp"
+            tools:srcCompat="@tools:sample/avatars"
+            android:baselineAligned="false" />
+
+    <TextView
+            android:layout_marginTop="15dp"
+            android:text="Create an Account"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-black"
+            android:textSize="34sp" />
+
+    <TextView
+            android:text="Sign Up to Get Started"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-medium"
+            android:textSize="14sp" />
+
+    <LinearLayout
+
+            android:layout_marginTop="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+        <ImageView
+                android:layout_width="wrap_content"
+                android:layout_gravity="center"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/baseline_person_24" />
+
+
+
+        <EditText
+                android:layout_weight="7"
+                android:layout_width="match_parent"
+                android:textColorHint="#8049454F"
+                android:layout_height="wrap_content"
+                android:hint="First Name"
+                android:inputType="textPassword" />
+        <EditText
+                android:layout_weight="7"
+                android:layout_width="match_parent"
+                android:textColorHint="#8049454F"
+                android:layout_height="wrap_content"
+                android:hint="Last Name"
+                android:inputType="textPassword" />
+    </LinearLayout>
+
+
+    <LinearLayout
+            android:weightSum="10"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+        <ImageView
+                android:layout_width="wrap_content"
+                android:layout_gravity="center"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/baseline_email_24"
+
+        <EditText
+                android:layout_weight="7"
+                android:layout_width="match_parent"
+                android:textColorHint="#8049454F"
+                android:layout_height="wrap_content"
+                android:hint="Email"
+                android:inputType="textEmailAddress" />
+    </LinearLayout>
+
+    <LinearLayout
+            android:weightSum="10"
+            android:layout_width="match_parent"
+
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+        <ImageView
+                android:layout_width="wrap_content"
+                android:layout_gravity="center"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/baseline_lock_24" />
+
+        <EditText
+                android:layout_weight="7"
+                android:textColorHint="#8049454F"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Password"
+                android:inputType="textPassword" />
+    </LinearLayout>
+
+    <LinearLayout
+            android:weightSum="10"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+        <ImageView
+                android:visibility="invisible"
+                android:layout_width="wrap_content"
+                android:layout_gravity="center"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/baseline_lock_24" />
+
+        <EditText
+                android:layout_weight="7"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Re Enter Password"
+                android:textColorHint="#8049454F"
+                android:inputType="textPassword" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:weightSum="4"
+            android:orientation="horizontal"
+            android:layout_height="wrap_content">
+
+        <Button
+                android:layout_width="0dp"
+                android:layout_weight="4"
+                android:textColor="#444444"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#FE897F"
+                android:text="Sign Up"
+                android:onClick="onSignUpButtonClick"
+                android:layout_marginTop="16dp" />
+    </LinearLayout>
+
+    <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Already have an account? Log In"
+            android:textColor="#FE897F"
+            android:gravity="center"
+            android:layout_marginTop="16dp"
+            android:onClick="onLoginClick" />
+
+
+</LinearLayout>
+```
