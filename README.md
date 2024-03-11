@@ -1,9 +1,9 @@
-# CE{Code of Course}-{Short Name of Course}
-Solutions to Prof. {Name of Prof}'s CE{Code of Course}: {Full Name of Course} ({Name of Uni} - {Semester} {Year}) Assignments
+# CE4029-MP
+Solutions to Mr. Ahmadi-Nik's CE429: Mobile Programming (Sharif University of Technology - Spring 2024)
 
 ## Overview
 
-This repository contains solutions to the assignments for the CE{Code of Course}: {Full Name of Course} course at the {Name of Uni}, {Semester} {Year}, taught by Prof. {Name of Prof}.
+This repository contains solutions to the assignments for the CE429: Mobile Programming course at the Sharif University of Technology, Spring 2024, taught by Mr. Ahmadi-Nik.
 
 ## Table of Contents
 
