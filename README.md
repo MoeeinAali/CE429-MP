@@ -1,4 +1,4 @@
-# CE4029-MP
+# CE429-MP
 Solutions to Mr. Ahmadi-Nik's CE429: Mobile Programming (Sharif University of Technology - Spring 2024)
 
 ## Overview
