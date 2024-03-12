@@ -28,8 +28,7 @@ class MainActivity : AppCompatActivity() {
             if (isValidCredentials(username, password)) {
                 Toast.makeText(this, "Login successful!", Toast.LENGTH_LONG).show()
             } else {
-                Toast.makeText(this, "Invalid credentials. Please try again.", Toast.LENGTH_SHORT)
-                    .show()
+                Toast.makeText(this, "Invalid credentials. Please try again.", Toast.LENGTH_SHORT).show()
             }
         }
     }
