@@ -1,5 +1,17 @@
 # Assignment03 - Question03 - RegistrationForm
-![text](link)
+* Duplicated Email
+
+![Duplicated Email](https://github.com/MoeeinAali/CE429-MP/blob/e3a7ad91716dfcc37179988818608a232b857b4a/Assignments/Assignment03/Question03-RegistrationForm/RegistrationForm01.png)
+* Null Fields Error
+
+![Null Fields Error](https://github.com/MoeeinAali/CE429-MP/blob/e3a7ad91716dfcc37179988818608a232b857b4a/Assignments/Assignment03/Question03-RegistrationForm/RegistrationForm02.png)
+* Incorrect Password Error
+
+![Incorrect Password Error](https://github.com/MoeeinAali/CE429-MP/blob/e3a7ad91716dfcc37179988818608a232b857b4a/Assignments/Assignment03/Question03-RegistrationForm/RegistrationForm03.png)
+* Successful Registration
+
+![Successful Registration](https://github.com/MoeeinAali/CE429-MP/blob/e3a7ad91716dfcc37179988818608a232b857b4a/Assignments/Assignment03/Question03-RegistrationForm/RegistrationForm04.png)
+
 ## MainActivity Codes ~ Kotlin
 
 ```
