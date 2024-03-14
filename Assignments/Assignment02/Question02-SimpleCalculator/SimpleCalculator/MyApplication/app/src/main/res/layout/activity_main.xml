@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:background="#39888888"
+        android:background="#39E8DEDE"
         android:layout_height="match_parent"
         android:gravity="bottom|center_horizontal"
         android:orientation="vertical"
@@ -29,15 +29,15 @@
             android:layout_width="match_parent"
             android:layout_height="1dp" />
 
-    <TableLayout
+    <LinearLayout
+            android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="8dp"
             android:layout_weight="5.25"
-            android:weightSum="5"
-            >
+            android:weightSum="5">
 
         <LinearLayout
                 android:layout_width="match_parent"
@@ -85,7 +85,7 @@
         </LinearLayout>
 
 
-        <TableRow
+        <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -128,7 +128,7 @@
                     android:textColor="?attr/colorSecondary"
                     android:textSize="@dimen/button_text_size_big" />
 
-        </TableRow>
+        </LinearLayout>
 
         <LinearLayout
                 android:layout_width="match_parent"
@@ -278,7 +278,7 @@
         </LinearLayout>
 
 
-    </TableLayout>
+    </LinearLayout>
 
 
 </LinearLayout>
