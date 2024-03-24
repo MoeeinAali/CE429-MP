@@ -1,6 +1,5 @@
 package com.Moeein.tictactoe
 
-import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
@@ -9,11 +8,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import com.Moeein.tictactoe.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -47,7 +43,14 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun resetGame() {
-        TODO("Not yet implemented")
+        enableButtons(buttons)
+        clearButtons()
+        toggleTurn(turn)
+
+    }
+
+    private fun clearGame() {
+        game = arrayOf(arrayOf(0, 0, 0), arrayOf(0, 0, 0), arrayOf(0, 0, 0)) // X = 1 , O = 2
     }
 
     private fun play() {
@@ -58,6 +61,14 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
+    }
+
+    private fun clearButtons() {
+        buttons.forEach {
+            it.text = ""
+        }
+        clearGame()
+
     }
 
     private fun case(btn: Button) {
@@ -115,9 +126,8 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun checkEndGame(turn: Int) {
-        val num = turn
-        var win = 0
+    private fun checkEndGame(turn_Number: Int) {
+        var winner_ID = 0
         val lines = arrayOf(
             intArrayOf(0, 1, 2),
             intArrayOf(3, 4, 5),
@@ -130,29 +140,29 @@ class MainActivity : AppCompatActivity() {
         )
 
         for (line in lines) {
-            if (game[line[0] / 3][line[0] % 3] == num &&
-                game[line[1] / 3][line[1] % 3] == num &&
-                game[line[2] / 3][line[2] % 3] == num
+            if (game[line[0] / 3][line[0] % 3] == turn_Number &&
+                game[line[1] / 3][line[1] % 3] == turn_Number &&
+                game[line[2] / 3][line[2] % 3] == turn_Number
             ) {
-                setColorWin(buttons[line[0]], buttons[line[1]], buttons[line[2]])
-                win = num
+                setColorWinner(buttons[line[0]], buttons[line[1]], buttons[line[2]])
+                winner_ID = turn_Number
                 break
             }
         }
-        if (win > 0) {
+        if (winner_ID > 0) {
             disableButtons(buttons)
-            lateinit var winner: String
-            if (win == 1) {
+            lateinit var winner_name: String
+            if (winner_ID == 1) {
                 score_X += 1
                 updateScore()
-                winner = "X"
+                winner_name = "X"
             }
-            if (win == 2) {
+            if (winner_ID == 2) {
                 score_O += 1
                 updateScore()
-                winner = "O"
+                winner_name = "O"
             }
-            dialogWin(winner)
+            dialogWiner(winner_name)
         }
     }
 
@@ -161,13 +171,13 @@ class MainActivity : AppCompatActivity() {
         binding.editTextOScore.text = "Score: $score_O"
     }
 
-    fun setColorWin(b1: Button, b2: Button, b3: Button) {
+    fun setColorWinner(b1: Button, b2: Button, b3: Button) {
         b1.setTextColor(ContextCompat.getColor(this, R.color.win))
         b2.setTextColor(ContextCompat.getColor(this, R.color.win))
         b3.setTextColor(ContextCompat.getColor(this, R.color.win))
     }
 
-    fun dialogWin(win: String) {
+    fun dialogWiner(win: String) {
         var alertDialomenug: AlertDialog
         val inflater: LayoutInflater = this.layoutInflater
         val dialogView: View = inflater.inflate(R.layout.activity_win, null)
