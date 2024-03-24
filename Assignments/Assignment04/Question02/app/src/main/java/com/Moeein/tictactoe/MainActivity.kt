@@ -73,15 +73,15 @@ class MainActivity : AppCompatActivity() {
 
     private fun case(btn: Button) {
         when (btn) {
-            buttons[0] -> game!![0][0] = turn
-            buttons[1] -> game!![0][1] = turn
-            buttons[2] -> game!![0][2] = turn
-            buttons[3] -> game!![1][0] = turn
-            buttons[4] -> game!![1][1] = turn
-            buttons[5] -> game!![1][2] = turn
-            buttons[6] -> game!![2][0] = turn
-            buttons[7] -> game!![2][1] = turn
-            buttons[8] -> game!![2][2] = turn
+            buttons[0] -> game[0][0] = turn
+            buttons[1] -> game[0][1] = turn
+            buttons[2] -> game[0][2] = turn
+            buttons[3] -> game[1][0] = turn
+            buttons[4] -> game[1][1] = turn
+            buttons[5] -> game[1][2] = turn
+            buttons[6] -> game[2][0] = turn
+            buttons[7] -> game[2][1] = turn
+            buttons[8] -> game[2][2] = turn
         }
     }
 
