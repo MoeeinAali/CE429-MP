@@ -9,6 +9,8 @@
     <color name="white">#FFFFFFFF</color>
     <color name="lightGray">#E6E6E6</color>
     <color name="back">#3DD342</color>
+    <color name="win">#FFEB3B</color>
+
     <color name="back2">#59D85D</color>
     <color name="logo">#004301</color>
     <color name="noturn">#59004301</color>

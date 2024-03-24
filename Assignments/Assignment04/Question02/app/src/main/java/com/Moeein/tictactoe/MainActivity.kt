@@ -1,10 +1,15 @@
 package com.Moeein.tictactoe
 
 import android.annotation.SuppressLint
+import android.app.AlertDialog
 import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
 import android.widget.Button
+import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
@@ -14,17 +19,18 @@ import com.Moeein.tictactoe.databinding.ActivityMainBinding
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var game: Array<Array<Int>>
-    private lateinit var buttonGame: Array<Button>
+    private lateinit var buttons: Array<Button>
     private var score_X = 0
     private var score_O = 0
-    private var turn = false // false = x , true = O
+    var playMode = true
+    private var turn = 1 // 1 = x , 2 = O
 
     override fun onCreate(savedInnumncenumte: Bundle?) {
         super.onCreate(savedInnumncenumte)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        game = arrayOf(arrayOf(0, 0, 0), arrayOf(0, 0, 0), arrayOf(0, 0, 0)) // X = 1 , O = 0
-        buttonGame = arrayOf(
+        game = arrayOf(arrayOf(0, 0, 0), arrayOf(0, 0, 0), arrayOf(0, 0, 0)) // X = 1 , O = 2
+        buttons = arrayOf(
             binding.button1,
             binding.button2,
             binding.button3,
@@ -38,125 +44,143 @@ class MainActivity : AppCompatActivity() {
         play()
         binding.buttonRestart.setOnClickListener { resetGame() }
 
-
-    }
-
-    fun play() {
-        buttonGame.forEach {
-            it.setOnClickListener {
-                checkTurn(turn, it as Button)
-                it.isEnabled = false
-            }
-        }
-    }
-
-    @SuppressLint("ResourceAsColor")
-    private fun checkTurn(t: Boolean, b: Button) {
-        if (!t) {
-            b.text = "X"
-            binding.editTextOTitle.setTextColor(ContextCompat.getColor(this, R.color.yourturn))
-            binding.editTextXTitle.setTextColor(ContextCompat.getColor(this, R.color.noturn))
-            b.setTextColor(ContextCompat.getColor(this, R.color.back))
-            turn = true
-
-        } else {
-            b.text = "O"
-            binding.editTextXTitle.setTextColor(ContextCompat.getColor(this, R.color.yourturn))
-            binding.editTextOTitle.setTextColor(ContextCompat.getColor(this, R.color.noturn))
-            b.setTextColor(ContextCompat.getColor(this, R.color.back))
-            turn = false
-        }
-    }
-
-    fun case(b: Button, num: Int) {
-        when (b) {
-            binding.button1 -> game[0][0] = num
-            binding.button2 -> game[0][1] = num
-            binding.button3 -> game[0][2] = num
-            binding.button4 -> game[1][0] = num
-            binding.button5 -> game[1][1] = num
-            binding.button6 -> game[1][2] = num
-            binding.button7 -> game[2][0] = num
-            binding.button8 -> game[2][1] = num
-            binding.button9 -> game[2][2] = num
-        }
-    }
-
-    fun gameEnd(num: Int) {
-        var win = 0
-        if ((game[0][0] == num) && (game[0][1] == num) && (game[0][2] == num)) {
-            setcolorwin(buttonGame[0], buttonGame[1], buttonGame[2])
-            win = num
-        }
-        if ((game[1][0] == num) && (game[1][1] == num) && (game[1][2] == num)) {
-            setcolorwin(buttonGame[3], buttonGame[4], buttonGame[5])
-            win = num
-        }
-        if (game[2][0] == num && game[2][1] == num && game[2][2] == num) {
-            setcolorwin(buttonGame[6], buttonGame[7], buttonGame[8])
-            win = num
-        }
-        if (game[0][0] == num && game[1][0] == num && game[2][0] == num) {
-            setcolorwin(buttonGame[0], buttonGame[3], buttonGame[6])
-            win = num
-        }
-        if (game[0][1] == num && game[1][1] == num && game[2][1] == num) {
-            setcolorwin(buttonGame[1], buttonGame[4], buttonGame[7])
-            win = num
-        }
-        if (game[0][2] == num && game[1][2] == num && game[2][2] == num) {
-            setcolorwin(buttonGame[2], buttonGame[5], buttonGame[8])
-            win = num
-        }
-        if (game[0][0] == num && game[1][1] == num && game[2][2] == num) {
-            setcolorwin(buttonGame[0], buttonGame[4], buttonGame[8])
-            win = num
-        }
-        if (game[0][2] == num && game[1][1] == num && game[2][0] == num) {
-            setcolorwin(buttonGame[6], buttonGame[4], buttonGame[2])
-            win = num
-        }
-
-        if (win == 1) {
-            buttonGame.forEach {
-                println("moeein")
-                it.isActivated = false
-            }
-            score_X += 1
-            binding.editTextXScore.text = "Score: $score_X"
-        }
-        if (win == 0) {
-            score_O += 1
-            binding.editTextOScore.text = "Score: $score_O"
-            buttonGame.forEach {
-                it.isActivated = false
-                println("moeein")
-
-            }
-        }
-
-
-    }
-
-    private fun setcolorwin(btn1: Button, btn2: Button, btn3: Button) {
-        val winningButtonIds = arrayOf(btn1.id, btn2.id, btn3.id)
-        buttonGame.forEach {
-            if (it.id !in winningButtonIds) {
-                it.setTextColor(ContextCompat.getColor(this, R.color.noturn))
-            }
-        }
     }
 
     private fun resetGame() {
-        buttonGame.forEach {
-            it.isEnabled = true
-            it.text = null
-            it.setTextColor(ContextCompat.getColor(this, R.color.back))
+        TODO("Not yet implemented")
+    }
+
+    private fun play() {
+        if (playMode) {
+            buttons.forEach {
+                it.setOnClickListener {
+                    checkTurn(it as Button)
+                }
+            }
         }
-        turn = false
-        binding.editTextXTitle.setTextColor(ContextCompat.getColor(this, R.color.yourturn))
-        binding.editTextOTitle.setTextColor(ContextCompat.getColor(this, R.color.noturn))
-        game = arrayOf(arrayOf(0, 0, 0), arrayOf(0, 0, 0), arrayOf(0, 0, 0)) // X = 1 , O = 0
+    }
+
+    private fun case(btn: Button) {
+        when (btn) {
+            buttons[0] -> game!![0][0] = turn
+            buttons[1] -> game!![0][1] = turn
+            buttons[2] -> game!![0][2] = turn
+            buttons[3] -> game!![1][0] = turn
+            buttons[4] -> game!![1][1] = turn
+            buttons[5] -> game!![1][2] = turn
+            buttons[6] -> game!![2][0] = turn
+            buttons[7] -> game!![2][1] = turn
+            buttons[8] -> game!![2][2] = turn
+        }
+    }
+
+    private fun checkTurn(btn: Button) {
+        if (turn == 1) { // X
+            btn.text = "X"
+            btn.setTextColor(ContextCompat.getColor(this, R.color.back2))
+            case(btn)
+            toggleTurn(turn)
+            btn.isEnabled = false
+            return
+        }
+        if (turn == 2) { // O
+            btn.text = "O"
+            btn.setTextColor(ContextCompat.getColor(this, R.color.back2))
+            case(btn)
+            toggleTurn(turn)
+            btn.isEnabled = false
+            return
+        }
+    }
+
+    private fun disableButtons(btns: Array<Button>) {
+        btns.forEach {
+            it.isEnabled = false
+        }
+    }
+
+    private fun enableButtons(btns: Array<Button>) {
+        btns.forEach {
+            it.isEnabled = true
+        }
+    }
+
+    private fun toggleTurn(trn: Int) {
+        if (trn == 1) { // X
+            binding.editTextXTitle.setTextColor(ContextCompat.getColor(this, R.color.noturn))
+            binding.editTextOTitle.setTextColor(ContextCompat.getColor(this, R.color.yourturn))
+            checkEndGame(turn)
+            turn = 2
+            return
+        }
+        if (trn == 2) {// O
+            binding.editTextOTitle.setTextColor(ContextCompat.getColor(this, R.color.noturn))
+            binding.editTextXTitle.setTextColor(ContextCompat.getColor(this, R.color.yourturn))
+            checkEndGame(turn)
+            turn = 1
+        }
+    }
+
+    private fun checkEndGame(turn: Int) {
+        val num = turn
+        var win = 0
+        val lines = arrayOf(
+            intArrayOf(0, 1, 2),
+            intArrayOf(3, 4, 5),
+            intArrayOf(6, 7, 8),
+            intArrayOf(0, 3, 6),
+            intArrayOf(1, 4, 7),
+            intArrayOf(2, 5, 8),
+            intArrayOf(0, 4, 8),
+            intArrayOf(2, 4, 6)
+        )
+
+        for (line in lines) {
+            if (game[line[0] / 3][line[0] % 3] == num &&
+                game[line[1] / 3][line[1] % 3] == num &&
+                game[line[2] / 3][line[2] % 3] == num
+            ) {
+                setColorWin(buttons[line[0]], buttons[line[1]], buttons[line[2]])
+                win = num
+                break
+            }
+        }
+
+        if (win == 1) {
+            dialogWin("X")
+            score_X += 1
+            updateScore()
+        }
+        if (win == 2) {
+            dialogWin("O")
+            score_O += 1
+            updateScore()
+        }
+    }
+
+    fun updateScore() {
+        binding.editTextXScore.text = "Score: $score_X"
+        binding.editTextOScore.text = "Score: $score_O"
+    }
+
+    fun setColorWin(b1: Button, b2: Button, b3: Button) {
+        b1.setTextColor(ContextCompat.getColor(this, R.color.win))
+        b2.setTextColor(ContextCompat.getColor(this, R.color.win))
+        b3.setTextColor(ContextCompat.getColor(this, R.color.win))
+    }
+
+    fun dialogWin(win: String) {
+        var alertDialomenug: AlertDialog
+        val inflater: LayoutInflater = this.layoutInflater
+        val dialogView: View = inflater.inflate(R.layout.activity_win, null)
+        val txtWin: TextView = dialogView.findViewById(R.id.playerwin)
+        txtWin.text = win
+        val dialogBuilder: AlertDialog.Builder = AlertDialog.Builder(this)
+        dialogBuilder.setOnDismissListener {}
+        dialogBuilder.setView(dialogView)
+        alertDialomenug = dialogBuilder.create();
+        alertDialomenug.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        alertDialomenug.show()
     }
 
 }
