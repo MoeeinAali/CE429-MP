@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="purple_200">#59004301</color>
+    <color name="purple_500">#59004301</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF5722</color>
+    <color name="black">#B8FFBB</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="lightGray">#E6E6E6</color>
+    <color name="back">#3DD342</color>
+    <color name="back2">#59D85D</color>
+    <color name="logo">#004301</color>
+    <color name="noturn">#59004301</color>
+    <color name="yourturn">#004301</color>
+</resources>
