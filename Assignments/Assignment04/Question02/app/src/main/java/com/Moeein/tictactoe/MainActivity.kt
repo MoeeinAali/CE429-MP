@@ -77,20 +77,14 @@ class MainActivity : AppCompatActivity() {
     private fun checkTurn(btn: Button) {
         if (turn == 1) { // X
             btn.text = "X"
-            btn.setTextColor(ContextCompat.getColor(this, R.color.back2))
-            case(btn)
-            toggleTurn(turn)
-            btn.isEnabled = false
-            return
         }
         if (turn == 2) { // O
             btn.text = "O"
-            btn.setTextColor(ContextCompat.getColor(this, R.color.back2))
-            case(btn)
-            toggleTurn(turn)
-            btn.isEnabled = false
-            return
         }
+        btn.setTextColor(ContextCompat.getColor(this, R.color.back2))
+        case(btn)
+        toggleTurn(turn)
+        disableButtons(arrayOf(btn))
     }
 
     private fun disableButtons(btns: Array<Button>) {
@@ -145,16 +139,20 @@ class MainActivity : AppCompatActivity() {
                 break
             }
         }
-
-        if (win == 1) {
-            dialogWin("X")
-            score_X += 1
-            updateScore()
-        }
-        if (win == 2) {
-            dialogWin("O")
-            score_O += 1
-            updateScore()
+        if (win > 0) {
+            disableButtons(buttons)
+            lateinit var winner: String
+            if (win == 1) {
+                score_X += 1
+                updateScore()
+                winner = "X"
+            }
+            if (win == 2) {
+                score_O += 1
+                updateScore()
+                winner = "O"
+            }
+            dialogWin(winner)
         }
     }
 

@@ -9,8 +9,6 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginStart="24dp"
-        android:layout_marginEnd="24dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
@@ -18,9 +16,9 @@
             android:id="@+id/textView5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="6dp"
+            android:textSize="32sp"
             android:text="is Winner!!"
-            android:textColor="@color/white"
+            android:textColor="@color/win"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -32,8 +30,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="X"
-            android:textColor="@color/white"
-            android:textSize="60sp"
+            android:textColor="@color/win"
+            android:textSize="200sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
