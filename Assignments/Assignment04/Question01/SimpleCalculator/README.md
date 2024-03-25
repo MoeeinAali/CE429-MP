@@ -1,0 +1,349 @@
+# Assignment04 - Question01 - SimpleCalculator
+![text](Animation.gif)
+
+## MainActivity ~ XML Codes
+
+* Use **Relative Layout** for this XML.
+
+```
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#39888888"
+    tools:context=".MainActivity">
+
+    <HorizontalScrollView
+        android:id="@+id/horizontalScrollView_ETInput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/ETOutput"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="8dp"
+        android:scrollbars="none">
+
+        <TextView
+            android:id="@+id/ETInput"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:scrollHorizontally="true"
+            android:singleLine="true"
+            android:textAlignment="viewEnd"
+            android:textColor="@color/black"
+            android:textSize="@dimen/textView_text_big" />
+
+    </HorizontalScrollView>
+
+    <TextView
+        android:id="@+id/ETOutput"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/viewline"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:singleLine="true"
+        android:textAlignment="viewEnd"
+        android:textSize="@dimen/textView_text_small" />
+
+    <View
+        android:id="@+id/viewline"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_above="@+id/table"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:background="@color/gray_light" />
+
+    <RelativeLayout
+        android:id="@+id/table"
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp">
+
+        <RelativeLayout
+            android:id="@+id/row1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_centerHorizontal="true">
+
+            <Button
+                android:id="@+id/BtnAC"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:background="?selectableItemBackground"
+                android:text="AC"
+                android:textColor="?attr/colorSecondary"
+                android:textSize="@dimen/button_text_size_small" />
+
+            <Button
+                android:id="@+id/BtnParOpen"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@+id/BtnAC"
+                android:background="?selectableItemBackground"
+                android:text="("
+                android:textColor="?attr/colorSecondary"
+                android:textSize="@dimen/button_text_size_small" />
+
+            <Button
+                android:id="@+id/BtnParClose"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@id/BtnParOpen"
+                android:background="?selectableItemBackground"
+                android:text=")"
+                android:textColor="?attr/colorSecondary"
+                android:textSize="@dimen/button_text_size_small" />
+
+            <Button
+                android:id="@+id/BtnTaghsim"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@id/BtnParClose"
+                android:background="?selectableItemBackground"
+                android:text="/"
+                android:textColor="?attr/colorSecondary"
+                android:textSize="25sp" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/row2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/row1"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_centerHorizontal="true">
+
+            <Button
+                android:id="@+id/BtnNum7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:background="?selectableItemBackground"
+                android:text="7"
+                android:textColor="@color/black"
+                android:textSize="@dimen/button_text_size_big" />
+
+            <Button
+                android:id="@+id/BtnNum8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@id/BtnNum7"
+                android:background="?selectableItemBackground"
+                android:text="8"
+                android:textColor="@color/black"
+                android:textSize="@dimen/button_text_size_big" />
+
+            <Button
+                android:id="@+id/BtnNum9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@id/BtnNum8"
+                android:background="?selectableItemBackground"
+                android:text="9"
+                android:textColor="@color/black"
+                android:textSize="@dimen/button_text_size_big" />
+
+            <Button
+                android:id="@+id/BtnZarb"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@id/BtnNum9"
+                android:background="?selectableItemBackground"
+                android:text="×"
+                android:textColor="?attr/colorSecondary"
+                android:textSize="@dimen/button_text_size_big" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/row3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/row2"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_centerHorizontal="true">
+
+
+            <Button
+                android:id="@+id/BtnNum4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:background="?selectableItemBackground"
+                android:text="4"
+                android:textColor="@color/black"
+                android:textSize="@dimen/button_text_size_big" />
+
+            <Button
+                android:id="@+id/BtnNum5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@id/BtnNum4"
+                android:background="?selectableItemBackground"
+                android:text="5"
+                android:textColor="@color/black"
+                android:textSize="@dimen/button_text_size_big" />
+
+            <Button
+                android:id="@+id/BtnNum6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@id/BtnNum5"
+                android:background="?selectableItemBackground"
+                android:text="6"
+                android:textColor="@color/black"
+                android:textSize="@dimen/button_text_size_big" />
+
+            <Button
+                android:id="@+id/BtnMenha"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@id/BtnNum6"
+                android:background="?selectableItemBackground"
+                android:text="-"
+                android:textColor="?attr/colorSecondary"
+                android:textSize="@dimen/button_text_size_big" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/row4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/row3"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_centerHorizontal="true">
+
+
+            <Button
+                android:id="@+id/BtnNum1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:background="?selectableItemBackground"
+                android:text="1"
+                android:textColor="@color/black"
+                android:textSize="@dimen/button_text_size_big" />
+
+            <Button
+                android:id="@+id/BtnNum2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@id/BtnNum1"
+                android:layout_weight="1"
+                android:background="?selectableItemBackground"
+                android:layoutDirection="rtl"
+                android:text="2"
+                android:textColor="@color/black"
+                android:textSize="@dimen/button_text_size_big" />
+
+            <Button
+                android:id="@+id/BtnNum3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@+id/BtnNum2"
+                android:background="?selectableItemBackground"
+                android:text="3"
+                android:textColor="@color/black"
+                android:textSize="@dimen/button_text_size_big" />
+
+            <Button
+                android:id="@+id/BtnJam"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@id/BtnNum3"
+                android:background="?selectableItemBackground"
+                android:text="+"
+                android:textColor="?attr/colorSecondary"
+                android:textSize="@dimen/button_text_size_big" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/row5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/row4"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_centerHorizontal="true">
+
+
+            <Button
+                android:id="@+id/BtnDelete"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:background="?selectableItemBackground"
+                android:text="DEL"
+                android:textColor="?attr/colorSecondary"
+                android:textSize="@dimen/button_text_size_small" />
+
+            <Button
+                android:id="@+id/BtnNum0"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@id/BtnDelete"
+                android:background="?selectableItemBackground"
+                android:text="0"
+                android:textColor="@color/black"
+                android:textSize="@dimen/button_text_size_big" />
+
+            <Button
+                android:id="@+id/BtnDot"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@+id/BtnNum0"
+                android:background="?selectableItemBackground"
+                android:text="."
+                android:textColor="@color/black"
+                android:textSize="@dimen/button_text_size_big" />
+
+            <FrameLayout
+                android:layout_width="85dp"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@id/BtnDot"
+                android:layout_weight="1">
+
+                <TextView
+
+                    android:id="@+id/BtnMosavi"
+                    android:layout_width="50dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginBottom="5dp"
+                    android:background="@drawable/shape_circle"
+                    android:gravity="center"
+                    android:text="="
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/button_text_size_big" />
+
+            </FrameLayout>
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+</RelativeLayout>
+```
+
