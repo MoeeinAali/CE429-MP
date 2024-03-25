@@ -1,5 +1,6 @@
 package com.Moeein.tictactoe
 
+import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
@@ -16,72 +17,38 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var game: Array<Array<Int>>
     private lateinit var buttons: Array<Button>
-    private var score_X = 0
-    private var score_O = 0
-    var playMode = true
-    private var turn = 1 // 1 = x , 2 = O
+    private var scoreX: Int = 0
+    private var scoreO: Int = 0
+
+    //    X = 1 , O = 0
+    private var turn: Int = 1
 
     override fun onCreate(savedInnumncenumte: Bundle?) {
         super.onCreate(savedInnumncenumte)
-        binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-        game = arrayOf(arrayOf(0, 0, 0), arrayOf(0, 0, 0), arrayOf(0, 0, 0)) // X = 1 , O = 2
-        buttons = arrayOf(
-            binding.button1,
-            binding.button2,
-            binding.button3,
-            binding.button4,
-            binding.button5,
-            binding.button6,
-            binding.button7,
-            binding.button8,
-            binding.button9
+        this.binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(this.binding.root)
+//        X = 1 , O = 0
+        this.game = arrayOf(arrayOf(0, 0, 0), arrayOf(0, 0, 0), arrayOf(0, 0, 0))
+        this.buttons = arrayOf(
+            this.binding.button1,
+            this.binding.button2,
+            this.binding.button3,
+            this.binding.button4,
+            this.binding.button5,
+            this.binding.button6,
+            this.binding.button7,
+            this.binding.button8,
+            this.binding.button9
         )
         play()
         binding.buttonRestart.setOnClickListener { resetGame() }
-
-    }
-
-    private fun resetGame() {
-        enableButtons(buttons)
-        clearButtons()
-        toggleTurn(turn)
-
-    }
-
-    private fun clearGame() {
-        game = arrayOf(arrayOf(0, 0, 0), arrayOf(0, 0, 0), arrayOf(0, 0, 0)) // X = 1 , O = 2
     }
 
     private fun play() {
-        if (playMode) {
-            buttons.forEach {
-                it.setOnClickListener {
-                    checkTurn(it as Button)
-                }
+        this.buttons.forEach { it0 ->
+            it0.setOnClickListener { it1 ->
+                checkTurn(it1 as Button)
             }
-        }
-    }
-
-    private fun clearButtons() {
-        buttons.forEach {
-            it.text = ""
-        }
-        clearGame()
-
-    }
-
-    private fun case(btn: Button) {
-        when (btn) {
-            buttons[0] -> game[0][0] = turn
-            buttons[1] -> game[0][1] = turn
-            buttons[2] -> game[0][2] = turn
-            buttons[3] -> game[1][0] = turn
-            buttons[4] -> game[1][1] = turn
-            buttons[5] -> game[1][2] = turn
-            buttons[6] -> game[2][0] = turn
-            buttons[7] -> game[2][1] = turn
-            buttons[8] -> game[2][2] = turn
         }
     }
 
@@ -98,36 +65,38 @@ class MainActivity : AppCompatActivity() {
         disableButtons(arrayOf(btn))
     }
 
-    private fun disableButtons(btns: Array<Button>) {
-        btns.forEach {
-            it.isEnabled = false
-        }
-    }
-
-    private fun enableButtons(btns: Array<Button>) {
-        btns.forEach {
-            it.isEnabled = true
+    private fun case(btn: Button) {
+        when (btn) {
+            this.buttons[0] -> this.game[0][0] = turn
+            this.buttons[1] -> this.game[0][1] = turn
+            this.buttons[2] -> this.game[0][2] = turn
+            this.buttons[3] -> this.game[1][0] = turn
+            this.buttons[4] -> this.game[1][1] = turn
+            this.buttons[5] -> this.game[1][2] = turn
+            this.buttons[6] -> this.game[2][0] = turn
+            this.buttons[7] -> this.game[2][1] = turn
+            this.buttons[8] -> this.game[2][2] = turn
         }
     }
 
     private fun toggleTurn(trn: Int) {
         if (trn == 1) { // X
-            binding.editTextXTitle.setTextColor(ContextCompat.getColor(this, R.color.noturn))
-            binding.editTextOTitle.setTextColor(ContextCompat.getColor(this, R.color.yourturn))
-            checkEndGame(turn)
-            turn = 2
+            this.binding.editTextXTitle.setTextColor(ContextCompat.getColor(this, R.color.noturn))
+            this.binding.editTextOTitle.setTextColor(ContextCompat.getColor(this, R.color.yourturn))
+            checkEndGame(this.turn)
+            this.turn = 2
             return
         }
         if (trn == 2) {// O
-            binding.editTextOTitle.setTextColor(ContextCompat.getColor(this, R.color.noturn))
-            binding.editTextXTitle.setTextColor(ContextCompat.getColor(this, R.color.yourturn))
-            checkEndGame(turn)
-            turn = 1
+            this.binding.editTextOTitle.setTextColor(ContextCompat.getColor(this, R.color.noturn))
+            this.binding.editTextXTitle.setTextColor(ContextCompat.getColor(this, R.color.yourturn))
+            checkEndGame(this.turn)
+            this.turn = 1
         }
     }
 
-    private fun checkEndGame(turn_Number: Int) {
-        var winner_ID = 0
+    private fun checkEndGame(turnNumber: Int) {
+        var winnerId = 0
         val lines = arrayOf(
             intArrayOf(0, 1, 2),
             intArrayOf(3, 4, 5),
@@ -140,45 +109,62 @@ class MainActivity : AppCompatActivity() {
         )
 
         for (line in lines) {
-            if (game[line[0] / 3][line[0] % 3] == turn_Number &&
-                game[line[1] / 3][line[1] % 3] == turn_Number &&
-                game[line[2] / 3][line[2] % 3] == turn_Number
+            if (game[line[0] / 3][line[0] % 3] == turnNumber &&
+                game[line[1] / 3][line[1] % 3] == turnNumber &&
+                game[line[2] / 3][line[2] % 3] == turnNumber
             ) {
                 setColorWinner(buttons[line[0]], buttons[line[1]], buttons[line[2]])
-                winner_ID = turn_Number
+                winnerId = turnNumber
                 break
             }
         }
-        if (winner_ID > 0) {
-            disableButtons(buttons)
-            lateinit var winner_name: String
-            if (winner_ID == 1) {
-                score_X += 1
+        selectWinner(winnerId)
+    }
+
+    private fun selectWinner(winnerId: Int) {
+        if (winnerId > 0) {
+            disableButtons(this.buttons)
+            lateinit var winnerName: String
+            if (winnerId == 1) {
+                this.scoreX += 1
                 updateScore()
-                winner_name = "X"
+                winnerName = "X"
             }
-            if (winner_ID == 2) {
-                score_O += 1
+            if (winnerId == 2) {
+                this.scoreO += 1
                 updateScore()
-                winner_name = "O"
+                winnerName = "O"
             }
-            dialogWiner(winner_name)
+            dialogWinner(winnerName)
         }
     }
 
-    fun updateScore() {
-        binding.editTextXScore.text = "Score: $score_X"
-        binding.editTextOScore.text = "Score: $score_O"
+    private fun disableButtons(buttons: Array<Button>) {
+        buttons.forEach {
+            it.isEnabled = false
+        }
     }
 
-    fun setColorWinner(b1: Button, b2: Button, b3: Button) {
+    private fun enableButtons(buttons: Array<Button>) {
+        buttons.forEach {
+            it.isEnabled = true
+        }
+    }
+
+    @SuppressLint("SetTextI18n")
+    private fun updateScore() {
+        binding.editTextXScore.text = "Score: $scoreX"
+        binding.editTextOScore.text = "Score: $scoreO"
+    }
+
+    private fun setColorWinner(b1: Button, b2: Button, b3: Button) {
         b1.setTextColor(ContextCompat.getColor(this, R.color.win))
         b2.setTextColor(ContextCompat.getColor(this, R.color.win))
         b3.setTextColor(ContextCompat.getColor(this, R.color.win))
     }
 
-    fun dialogWiner(win: String) {
-        var alertDialomenug: AlertDialog
+    private fun dialogWinner(win: String) {
+        val alertdialog: AlertDialog
         val inflater: LayoutInflater = this.layoutInflater
         val dialogView: View = inflater.inflate(R.layout.activity_win, null)
         val txtWin: TextView = dialogView.findViewById(R.id.playerwin)
@@ -186,10 +172,30 @@ class MainActivity : AppCompatActivity() {
         val dialogBuilder: AlertDialog.Builder = AlertDialog.Builder(this)
         dialogBuilder.setOnDismissListener {}
         dialogBuilder.setView(dialogView)
-        alertDialomenug = dialogBuilder.create();
-        alertDialomenug.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-        alertDialomenug.show()
+        alertdialog = dialogBuilder.create()
+        alertdialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        alertdialog.show()
     }
+
+    private fun resetGame() {
+        enableButtons(this.buttons)
+        clearButtons()
+        toggleTurn(this.turn)
+
+    }
+
+    private fun clearGame() {
+        this.game = arrayOf(arrayOf(0, 0, 0), arrayOf(0, 0, 0), arrayOf(0, 0, 0)) // X = 1 , O = 2
+    }
+
+    private fun clearButtons() {
+        this.buttons.forEach {
+            it.text = ""
+        }
+        clearGame()
+
+    }
+
 
 }
 

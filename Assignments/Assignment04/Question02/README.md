@@ -1,186 +1,58 @@
-# Assignment04 - Question01 - RegistrationForm
+# Assignment04 - Question02
 
-![RegistrationForm](1.png)
+![Animation.gif](1.png)
 
-## XML Codes
+### Methods
 
-```
-<?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:backgroundTint="@color/black"
-    android:padding="16dp">
+1. `onCreate(savedInnumncenumte: Bundle?)`: Called when the activity is first created, initializes the game board, sets
+   up UI components, and assigns click listeners to buttons.
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="match_parent"
-        android:layout_height="102dp"
-        android:baselineAligned="false"
-        tools:ignore="ContentDescription"
-        tools:srcCompat="@tools:sample/avatars" />
+2. `play()`: Assigns click listeners to each button on the game board.
 
-    <TextView
-        android:id="@+id/textViewCreateAccount"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/imageView"
-        android:gravity="center"
-        android:text="Create an Account"
-        android:textColor="#ffffff"
-        android:textSize="34sp"
-        android:textStyle="bold" />
+3. `checkTurn(btn: Button)`: Checks whose turn it is (X or O) and updates the game board accordingly when a button is
+   clicked.
 
-    <TextView
-        android:id="@+id/textViewSignUp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/textViewCreateAccount"
-        android:gravity="center"
-        android:text="Sign Up to Get Started"
-        android:textColor="#ffffff"
-        android:textSize="14sp" />
+4. `case(btn: Button)`: Updates the internal game state based on which button is clicked.
 
-    <RelativeLayout
-        android:id="@+id/relativeLayoutName"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/textViewSignUp"
-        android:layout_marginTop="20dp">
+5. `toggleTurn(trn: Int)`: Switches the turn between X and O after a move is made.
 
-        <ImageView
-            android:id="@+id/imageViewPerson"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_centerVertical="true"
-            app:srcCompat="@drawable/baseline_person_24"
-            tools:ignore="ContentDescription" />
+6. `checkEndGame(turnNumber: Int)`: Checks if there is a winner or if the game is a draw after each move.
 
-        <EditText
-            android:id="@+id/etFirstName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_toEndOf="@id/imageViewPerson"
-            android:hint="First Name"
-            android:inputType="text"
-            android:textColorHint="#8049454F" />
+7. `selectWinner(winnerId: Int)`: Handles actions when a player wins the game.
 
-        <EditText
-            android:id="@+id/etLastName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/etFirstName"
-            android:layout_toEndOf="@id/imageViewPerson"
-            android:hint="Last Name"
-            android:inputType="text"
-            android:textColorHint="#8049454F" />
+8. `disableButtons(buttons: Array<Button>)`: Disables buttons on the game board.
 
-    </RelativeLayout>
+9. `enableButtons(buttons: Array<Button>)`: Enables buttons on the game board.
 
-    <RelativeLayout
-        android:id="@+id/relativeLayoutEmail"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/relativeLayoutName">
+10. `updateScore()`: Updates displayed scores for each player.
 
-        <ImageView
-            android:id="@+id/imageViewEmail"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_centerVertical="true"
-            app:srcCompat="@drawable/baseline_email_24"
-            tools:ignore="ContentDescription" />
+11. `setColorWinner(b1: Button, b2: Button, b3: Button)`: Changes text color of the winning combination to indicate the
+    winning sequence.
 
-        <EditText
-            android:id="@+id/etEmail"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_toEndOf="@id/imageViewEmail"
-            android:hint="Email"
-            android:inputType="textEmailAddress"
-            android:textColorHint="#8049454F" />
+12. `dialogWinner(win: String)`: Displays a dialog box announcing the winner of the game.
 
-    </RelativeLayout>
+13. `resetGame()`: Resets the game board and toggles the turn back to Player X.
 
-    <RelativeLayout
-        android:id="@+id/relativeLayoutPassword"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/relativeLayoutEmail">
+14. `clearGame()`: Resets the internal game state.
 
-        <ImageView
-            android:id="@+id/imageViewLock"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_centerVertical="true"
-            app:srcCompat="@drawable/baseline_lock_24"
-            tools:ignore="ContentDescription" />
+15. `clearButtons()`: Clears text of all buttons on the game board.
 
-        <EditText
-            android:id="@+id/etPassword"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_toEndOf="@id/imageViewLock"
-            android:hint="Password"
-            android:inputType="textPassword"
-            android:textColorHint="#8049454F" />
+### Variables
 
-    </RelativeLayout>
+1. `binding`: An instance of the `ActivityMainBinding` class representing the binding between the activity and its
+   layout.
 
-    <RelativeLayout
-        android:id="@+id/relativeLayoutReEnterPassword"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/relativeLayoutPassword">
+2. `game`: A 2D array representing the state of the Tic Tac Toe game board.
 
-        <ImageView
-            android:id="@+id/imageViewLock2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_centerVertical="true"
-            android:visibility="invisible"
-            app:srcCompat="@drawable/baseline_lock_24"
-            tools:ignore="ContentDescription" />
+3. `buttons`: An array containing references to all buttons on the game board.
 
-        <EditText
-            android:id="@+id/etPasswordReWrite"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_toEndOf="@id/imageViewLock2"
-            android:hint="Re Enter Password"
-            android:inputType="textPassword"
-            android:textColorHint="#8049454F" />
+4. `scoreX`: An integer representing the score of Player X.
 
-    </RelativeLayout>
+5. `scoreO`: An integer representing the score of Player O.
 
-    <Button
-        android:id="@+id/btnSignUp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/relativeLayoutReEnterPassword"
-        android:layout_marginTop="16dp"
-        android:backgroundTint="#FE897F"
-        android:onClick="onSignUpButtonClick"
-        android:text="Sign Up"
-        android:textColor="#444444" />
+6. `turn`: An integer representing whose turn it is (1 for X, 2 for O).
 
-    <TextView
-        android:id="@+id/textViewLogin"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/btnSignUp"
-        android:layout_marginTop="16dp"
-        android:gravity="center"
-        android:onClick="onLoginClick"
-        android:text="Already have an account? Log In"
-        android:textColor="#FE897F"
-        android:textSize="16sp" />
+## Codes ~ Kotlin & XML
 
-</RelativeLayout>
-```
+- [Kotlin Codes](TicTacToe\app\src\main\java\com\Moeein\tictactoe\MainActivity.kt)
+- [XML Codes](TicTacToe\app\src\main\res\layout\activity_main.xml)
