@@ -1,6 +1,6 @@
 # Assignment04 - Question02
 
-![Animation.gif](1.png)
+![Animation.gif](Animation.gif)
 
 ### Methods
 
