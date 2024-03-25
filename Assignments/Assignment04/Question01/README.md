@@ -22,8 +22,3 @@ This question refers to four programs created using **RelativeLayout XML** and t
    <img src="SimpleDesign/5.png" alt="LoginSuccessful" width="70%"><br><br>
    <img src="SimpleDesign/6.png" alt="LoginSuccessful" width="70%">
 
-
-## XML Codes
-
-```
-```
