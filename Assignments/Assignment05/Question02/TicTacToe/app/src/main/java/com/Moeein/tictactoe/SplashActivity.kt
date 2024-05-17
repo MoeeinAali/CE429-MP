@@ -1,5 +1,6 @@
 package com.Moeein.tictactoe
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
@@ -9,10 +10,12 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.os.postDelayed
 import com.Moeein.tictactoe.databinding.ActivitySplashBinding
 
+@SuppressLint("CustomSplashScreen")
 class SplashActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySplashBinding
     private val SPLASH_DISPLAY_LENGTH: Long = 2000
 
+    @SuppressLint("HardwareIds", "SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivitySplashBinding.inflate(layoutInflater)

@@ -36,8 +36,8 @@ class LoginActivity : AppCompatActivity() {
         }
 
         binding.btnSignIn.setOnClickListener {
-            var loginEmail = binding.txtEmailLogin.text.toString()
-            var loginPassword = binding.txtPasswordLogin.text.toString()
+            val loginEmail = binding.txtEmailLogin.text.toString()
+            val loginPassword = binding.txtPasswordLogin.text.toString()
             if (loginEmail.isNotEmpty() and loginPassword.isNotEmpty()) {
 
                 for (i in 0 until emails.size) {
