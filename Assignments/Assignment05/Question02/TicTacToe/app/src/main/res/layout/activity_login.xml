@@ -3,8 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="#3E59D85D"
     android:layout_height="match_parent"
-    android:backgroundTint="@color/black"
     android:orientation="vertical"
     android:padding="16dp">
 

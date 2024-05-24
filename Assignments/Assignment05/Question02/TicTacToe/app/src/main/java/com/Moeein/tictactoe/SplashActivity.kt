@@ -13,24 +13,21 @@ import com.Moeein.tictactoe.databinding.ActivitySplashBinding
 @SuppressLint("CustomSplashScreen")
 class SplashActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySplashBinding
-    private val SPLASH_DISPLAY_LENGTH: Long = 2000
 
     @SuppressLint("HardwareIds", "SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivitySplashBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        binding.splashText.text = "TicTacToe\nGame"
-
+//        Toast UUID
         val deviceUUID = Settings.Secure.getString(contentResolver, Settings.Secure.ANDROID_ID)
         Toast.makeText(this, "Device UUID: $deviceUUID", Toast.LENGTH_SHORT).show()
 
-
         Handler().postDelayed({
-            val mainIntent = Intent(this, LoginActivity::class.java)
-            startActivity(mainIntent)
+            val intent = Intent(this, LoginActivity::class.java)
+            startActivity(intent)
             finish()
-        }, SPLASH_DISPLAY_LENGTH)
+        }, 2000)
     }
 }
 
